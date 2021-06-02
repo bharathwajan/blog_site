@@ -1,0 +1,156 @@
+{% load static %}
+{% static 'images' as image_path %}
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <title>Bootstrap 4 Blog Template For Developers</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="{% static 'css/theme-1.css'%}">
+	
+    
+
+</head> 
+
+<body>
+    
+    <header class="header text-center">	    
+	    
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				
+				<div class="profile-section pt-3 pt-lg-0">
+					{%for intro in intro%}
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="{{intro.profile_pic.url}}" alt="image" >			
+					
+					<div class="bio mb-3">{{intro.content}}<br><a href="about.html">Find more about us</a></div><!--//bio-->
+					{%endfor%}
+				    <ul class="social-list list-inline py-3 mx-auto">
+			            
+			            <li class="list-inline-item"><a href="https://www.linkedin.com/in/bharathwajan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://github.com/bharathwajan"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			          
+			        </ul><!--//social-list-->
+			        <hr> 
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="homepage"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href='website_about'><i class="fas fa-user fa-fw mr-2"></i>About our website</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="about.html"><i class="fas fa-user fa-fw mr-2"></i>Healthcare expert team</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="hct"><i class="fas fa-user fa-fw mr-2"></i>Healthcare coordinators team</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="supporter_detail"><i class="fa fa-users" aria-hidden="true"></i> supporters</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="tt"><i class="fas fa-user fa-fw mr-2"></i>Technical team</a>
+					</li>	
+				</ul>
+				
+				<div class="my-2 my-md-3">
+					
+				    <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdWJusYNyO6xhHHHdL894tghJeKnNjTtI2cs-AIhQRImjOwow/viewform?usp=sf_link" target="_blank">Get in Touch</a>
+				    
+				</div>
+			</div>
+		</nav>
+    </header>
+    
+    <div class="main-wrapper">
+	    
+	    <article class="about-section py-5">
+			
+			<h3 style="text-align: center;">Technical Team </h3>
+			<div style="text-align: right;color:#53D637;" id="google_translate_element"></div>
+
+				<script type="text/javascript">
+					function googleTranslateElementInit() {
+  					new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+					}
+				</script>
+
+				<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+			<br>
+			<br>	
+			{%for admin in admins%}
+		    <div class="container">
+				<h4>{{admin.name}}</h4>
+			    <img class="img-rounded" style=" float:left ; width:210px ;height:190px; padding:0 25px 0 0 ;clear: left;" src="{{admin.picture.url}}">
+				<p style="text-align: justify ; font-family:Times New Roman ; ">{{admin.bio}}</p>
+				<hr>
+			 </div>
+			 {%endfor%}
+	    </article><!--//about-section-->
+	    <br>
+		<br>
+	    <section class="cta-section theme-bg-light py-5">
+		    <div class="container text-center">
+			    <h2 class="heading"></h2>
+			    <div class="intro">Welcome to apothecary. Subscribe and get my latest post on your inbox.</div>
+			    <form action="subscribers" method="POST" class="signup-form form-inline justify-content-center pt-3">
+					{% csrf_token %}
+                    <div class="form-group">
+                        <label class="sr-only" for="semail">Your email</label>
+                        <input type="email" id="semail" name="semail1" class="form-control mr-md-1 semail" placeholder="Enter email">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+		    </div><!--//container-->
+	    </section>
+	    
+	    <footer class="footer text-center py-2 theme-bg-dark">
+		   
+	        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Bharathwajan</a> for developers</small>
+		   
+	    </footer>
+    
+    </div><!--//main-wrapper-->
+    
+
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>     
+    
+
+</body>
+</html> 
+
