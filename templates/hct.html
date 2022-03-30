@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
-    <title>Bootstrap 4 Blog Template For Developers</title>
+    <title>apothecary-re</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -51,6 +51,7 @@
 			            <li class="list-inline-item"><a href="https://www.linkedin.com/in/apothecary-re-4a7237213r"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="https://www.instagram.com/apothecary_re/?utm_medium=copy_link"><i class="fab fa-instagram fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100068618738585"><i class="fab fa-facebook fa-fw"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.youtube.com/channel/UCcSIgLKKZ5thTtXFuiTWRmA"><i class="fab fa-youtube fa-fw"></i></a></li>
 			        </ul><!--//social-list-->
 			        <hr> 
 				</div><!--//profile-section-->
@@ -102,7 +103,7 @@
 			<br>	
 			{%for admin in admins%}
 		    <div class="container">
-				<h4>{{admin.name}}</h4> 
+				<h4>{{admin.name}} {{admin.qualification_or_designation}}</h4> 
 				<br> 
 			    <img class="img-rounded" style=" float:left ; width:210px ;height:190px; padding:0 25px 0 0 ;clear: left;" src="{{admin.picture.url}}">
 				<p style="text-align: justify ;">{{admin.bio}}</p>

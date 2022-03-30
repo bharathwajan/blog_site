@@ -15,11 +15,14 @@ class blog(models.Model):
     title = models.CharField(max_length=100,blank=True)
     first_img = models.ImageField(upload_to='pics',blank=True,help_text="This image will be displayed on the start of the paragraph")
     paragraph = models.TextField(blank=True,help_text="Dont use any paragraph field if you want to put meme or video else it may cause error")
+
+    sub_topic_2 = models.CharField(max_length=100,blank=True)
     inter_img = models.ImageField(upload_to='pics',blank=True,help_text="This image will be displayed on the middle of the paragraph")
     paragraph2=models.TextField(blank=True)
+
+    sub_topic_final = models.CharField(max_length=100,blank=True)
     final_img = models.ImageField(upload_to='pics',blank=True,help_text="This image will be displayed on the end of the paragraph")
     final_paragraph=models.TextField(blank=True)
-    
 
     meme=models.ImageField(upload_to= 'pics',blank=True)
     meme_description=models.TextField(blank=True,help_text="This will be the description of the meme on the page")
@@ -50,9 +53,9 @@ def save_post(sender,instance,**kwargs):
     subject, from_email, to = 'New post on apothecary-re.com',settings.EMAIL_HOST_USER, recipient
     text_content=f'check out the new post on {title}' 
     html_content = render_to_string('mail.html',{ 'title':title , 'blogger_name':blogger_name , 'date':date})    
-    msg = EmailMultiAlternatives(subject, text_content,from_email,bcc=recipient)
-    msg.attach_alternative(html_content, "text/html") 
-    msg.send()
+    #msg = EmailMultiAlternatives(subject, text_content,from_email,bcc=recipient)
+    #msg.attach_alternative(html_content, "text/html") 
+    #msg.send()
   
 
 post_save.connect(save_post,sender=blog)
@@ -77,7 +80,8 @@ class experts_team_bio(models.Model):
     (female, 'female'),
     (other, 'other'),
     ]
-    gender = models.CharField(max_length=20,choices=gender,default=male) 
+    gender = models.CharField(max_length=20,choices=gender,default=male)
+    qualification_or_designation=models.CharField(max_length=40,blank=True)
     #phone=PhoneField(blank=True, help_text='Contact phone number')
     picture=models.ImageField(upload_to='pics',default='default.png',blank=True)
     bio=models.TextField(help_text='upload atleast seven lines to get proper alignment')
@@ -99,6 +103,7 @@ class cordinators_team_bio(models.Model):
     (other, 'other'),
     ]
     gender = models.CharField(max_length=20,choices=gender,default=male) 
+    qualification_or_designation=models.CharField(max_length=40,blank=True)
     #phone=PhoneField(blank=True, help_text='Contact phone number')
     picture=models.ImageField(upload_to='pics',default='default.png',blank=True)
     bio=models.TextField(help_text='upload atleast seven lines to get proper alignment')
@@ -115,6 +120,7 @@ class supporters(models.Model):
     (other, 'other'),
     ]
     gender = models.CharField(max_length=20,choices=gender,default=male) 
+    qualification_or_designation=models.CharField(max_length=40,blank=True)
     #phone=PhoneField(blank=True, help_text='Contact phone number')
     picture=models.ImageField(upload_to='pics',default='default.png',blank=True)
     bio=models.TextField(help_text='upload atleast seven lines to get proper alignment')

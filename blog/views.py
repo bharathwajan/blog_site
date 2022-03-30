@@ -79,23 +79,37 @@ def commenter_final(request):
 
 def subscribers(request):  # This method is used to save users to save to database
     recipient = request.POST.get('semail1')
-    print('reciptent is',recipient)
-    
-    if users.objects.filter(email=recipient).exists() == True:
-        messages.success(request,'hurrah ! you are already subscribed')
+    #print('reciptent is',recipient)
+    #print(type(recipient))
+    temp_receiptent=list(enumerate(recipient))
+    for index,words in temp_receiptent:
+        if words=="@":
+            marking=index
+    correctmail=recipient[marking:]
+    if correctmail=="@gmail.com": #condition only allows to enter only gmail id
+        if users.objects.filter(email=recipient).exists() == True:
+            messages.success(request,'hurrah ! you are already subscribed')
+            return redirect('/homepage')
+            return render(request, 'index.html')
+
+        else:
+            to_db = users.objects.create(email=recipient) 
+            subject, from_email, to = 'welcome to our community',settings.EMAIL_HOST_USER, recipient
+            text_content="thank_you_for_subscribing"
+            html_content = render_to_string('welcome.html',{ 'email':recipient })  
+            msg = EmailMultiAlternatives(subject, text_content,from_email,[to])
+            msg.attach_alternative(html_content, "text/html") 
+            msg.send()
+            messages.success(request,'Thank you for subscribing')
+            return redirect('/homepage')
+            return render(request, 'index.html')
+    else :
+        messages.success(request,'please enter a valid email id')
         return redirect('/homepage')
         return render(request, 'index.html')
 
-    else:
-        to_db = users.objects.create(email=recipient) 
-        subject, from_email, to = 'welcome to our community',settings.EMAIL_HOST_USER, recipient
-        text_content="thank_you_for_subscribing"
-        html_content = render_to_string('welcome.html',{ 'email':recipient })  
-        msg = EmailMultiAlternatives(subject, text_content,from_email,[to])
-        msg.attach_alternative(html_content, "text/html") 
-        msg.send()
-        return redirect('/homepage')
-        return render(request, 'index.html')
+    
+    
 
 def comment_action(request):
     name=request.POST.get('name')

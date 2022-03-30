@@ -54,6 +54,7 @@
 			            <li class="list-inline-item"><a href="https://www.linkedin.com/in/apothecary-re-4a7237213r"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="https://www.instagram.com/apothecary_re/?utm_medium=copy_link"><i class="fab fa-instagram fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100068618738585"><i class="fab fa-facebook fa-fw"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.youtube.com/channel/UCcSIgLKKZ5thTtXFuiTWRmA"><i class="fab fa-youtube fa-fw"></i></a></li>
 			        </ul><!--//social-list-->
 			        <hr> 
 				</div><!--//profile-section-->
@@ -134,22 +135,25 @@
 								{% endif %}
 								
 								
-								<div style="text-align:justify;font-size:18px;" class="intro" >{{objs.paragraph}}</div>
+								<div style="text-align:justify;font-size:18px;" class="intro" >{{objs.paragraph|linebreaks|urlize	}}</div>
 								
 								
+								<h5 class="title mb-1"><a href="">{{objs.sub_topic_2}}</a></h5>
+								<br>
 								{% if objs.inter_img %}
 									<img style="max-width: 100%"  src="{{objs.inter_img.url}}" alt="image">
 								{% endif %}
 								
+								<br>
+								<div style="text-align:justify;font-size:18px;" class="intro">{{objs.paragraph2|linebreaks|urlize}}</div>
 								
-								<div style="text-align:justify;font-size:18px;" class="intro">{{objs.paragraph2}}</div>
-								
-								
+								<h5 class="title mb-1"><a href="">{{objs.sub_topic_final}}</a></h5>
+								<br>
 								{% if objs.final_img %}
 									<img  style="max-width: 100%" src="{{objs.final_img.url}}" alt="image">
 								{% endif %}
-								
-								<div style="text-align:justify;font-size:18px;" class="intro">{{objs.final_paragraph}}</div>
+								<br>
+								<div style="text-align:justify;font-size:18px;" class="intro">{{objs.final_paragraph|linebreaks|urlize}}</div>
 								
 
 
@@ -158,7 +162,7 @@
 								<img src="{{objs.meme.url}}" alt="meme" width=100% height=100%>
 								<br>
 								<br>
-								<div class="meta mb-1"><span  style="font-weight: bold; color:black;font-size: 15px;">{{objs.blogger_name}}</span><span style="font-weight: normal; color: black;font-size: 16px;" class="date">{{objs.meme_description}}</span></div>
+								<div class="meta mb-1"><span  style="font-weight: bold; color:black;font-size: 15px;">{{objs.blogger_name}}</span><span style="font-weight: normal; color: black;font-size: 16px;" class="date">{{objs.meme_description|urlize}}</span></div>
 								<br>
 								<div class="meta mb-1"><span class="date">Published on {{objs.posted_on}}</span></div>
 
@@ -173,7 +177,7 @@
 								
 								<br>
 								<br>
-								<dl>{{objs.video_description}}</dl>
+								<dl>{{objs.video_description|urlize}}</dl>
 								<div class="meta mb-1"><span class="date">{{objs.blogger_name}}</span><span class="date">Published on {{objs.posted_on}}</span></div>
 								
 							{%endif%}
@@ -262,7 +266,7 @@
 													<span class="title mb-1	">{{comment.name}}</span>
 													<span class="date text-black-50">Shared publicly - {{comment.date}}</span>
 												</strong><br>
-												<p class="comment-text">{{comment.content}} </p>	
+												<p class="comment-text">{{comment.content|urlize}} </p>	
 													
 											</div>
 												
